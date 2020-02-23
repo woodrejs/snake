@@ -193,7 +193,7 @@ body > div {
 }
 
 #start {
-  display: none !important;
+  display: none;
   height: 50vh;
   width: 60vw;
   position: absolute;
@@ -497,5 +497,24 @@ body > div {
 
 #win img {
   height: 20%;
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+  #start #startConteiner span {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 1024px) and (orientation: portrait) {
+  #start #startConteiner {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #start #startConteiner span {
+    font-size: 0.6rem;
+    margin-top: 1rem;
+  }
 }
 /*# sourceMappingURL=snake.css.map */

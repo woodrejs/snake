@@ -152,40 +152,53 @@ window.onload = function()
     let counter = 0;
     let life = 3;
     let speed = 8;
-    const winLvl = 8; //determines after with lvl player win
+    const winLvl = 8;
     function animation()
     {
         requestAnimationFrame(animation);
         c.clearRect(0,0,canvas.width,canvas.height);
         showCounter(foodCounter,foodArray.length);
         showCounter(lvlCounter,10-speed);
-        life ==3 && pause == false ? setHearts() : false;
 
         for(snake of snakeArray)
             snake.draw();
         for(food of foodArray)
             food.draw();
-            
-        //lvl up state
-        if(foodArray.length == 0 && 10-speed !== winLvl){
-            showPopUp(lvlPopUp);
+
+    //counter
+        pause == false ? counter++ : counter = counter;
+    //hearts reset
+        if(life ==3 && pause == false){
+            setHearts();
+        }
+    //playground reset
+        if(foodArray.length == 0){
             setFood();
             setSnakeHead();
-            life !== 1 ? speed-- : speed = 9; 
         }
-
+    //lvlup & win state
+        if(foodArray.length == 0 && 10-speed !== winLvl){
+            showPopUp(lvlPopUp);
+            life !== 1 ? speed-- : speed = 9;
+        }
+        else if(10-speed == winLvl && foodArray.length == 0){
+            showPopUp(winPopUp);
+            life = 3;
+            speed = winLvl;
+        }
+    //move state
         if(counter == speed){
             const head = snakeArray[0];
             const headX = head.x+getHorizontalDirection(head.radius*2);
             const headY = head.y+getVerticalDirection(head.radius*2);
             const newHead = new Snake(headX,headY,snakeSize);
 
+        //colision with tail
             for (let i = 1; i < snakeArray.length; i++) {
-                const food = snakeArray[i];
-                const headTailDistance = checkDistance(food.x,head.x,food.y,head.y);
+                const tail = snakeArray[i];
+                const headTailDistance = checkDistance(tail.x,head.x,tail.y,head.y);
                 if(headTailDistance < head.radius*2){
                     life--;
-                    setSnakeHead();
                     updateHearth(lifePopUpHearts);
                     updateHearth(bottomHearts);
                     if(life !== 0){
@@ -197,17 +210,9 @@ window.onload = function()
                     }
                 }
             }
-            for (let i = 0; i < foodArray.length; i++) {
-                const food = foodArray[i];
-                const snakeFoodDistance = checkDistance(food.x,head.x,food.y,head.y);
-                snakeFoodDistance<food.radius*2 ? snakeArray.push(foodArray.splice(i,1)[0]) : false;
-            }
-            snakeArray.unshift(newHead);
-            snakeArray.pop();
-            counter = 0;
-            if(newHead.x+newHead.radius<=0 || newHead.x-newHead.radius>=canvas.width || newHead.y+newHead.radius <= 0 || newHead.y-newHead.radius >= canvas.height){
+        //colision with walls
+            if(head.x+head.radius<=0 || head.x-head.radius>=canvas.width || head.y+head.radius <= 0 || head.y-head.radius >= canvas.height){
                 life--;
-                setSnakeHead();
                 updateHearth(lifePopUpHearts);
                 updateHearth(bottomHearts);
                 if(life !== 0){
@@ -218,16 +223,18 @@ window.onload = function()
                     life = 3;
                 }
             }
-        }
-        else
-            pause == false ? counter++ : counter = counter;
-
-        if(10-speed == winLvl && foodArray.length == 0){
-            showPopUp(winPopUp);
-            setFood();
-            setSnakeHead();
-            life = 3;
-            speed = winLvl;
+        //eat food
+            const foodArrayLength = foodArray.length;
+            for (let i = 0; i < foodArray.length; i++) {
+                const food = foodArray[i];
+                const snakeFoodDistance = checkDistance(food.x,head.x,food.y,head.y);
+                if(snakeFoodDistance<food.radius*2){
+                    foodArray.splice(i,1);
+                }
+            }
+            foodArrayLength == foodArray.length ? snakeArray.pop() : false;
+            pause == false ? snakeArray.unshift(newHead) : setSnakeHead();
+            counter = 0;
         }
     }
 //init
@@ -245,8 +252,6 @@ window.onload = function()
         else if(e.keyCode == 32){
             showPopUp(pausePopUp);
         }
-        else
-            return;
     });
     window.addEventListener('keydown',setDirection);
     setCanvasDimensions(canvas);

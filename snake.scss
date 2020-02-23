@@ -24,10 +24,6 @@ $sixth: #0D1440;
         opacity: 0;
     }
 }
-
-*{
-    //border: 1px solid green;
-}
 body{
     margin: 0;
     padding: 0;
@@ -123,7 +119,7 @@ body{
     }
 }
 #start{
-    display: none!important;
+    display: none;
     height: 50vh;
     width: 60vw;
     position: absolute;
@@ -319,4 +315,24 @@ body{
     img{
         height: 20%;
     }
+}
+@media (max-width: 1024px) and (orientation: landscape){ 
+    #start{
+        #startConteiner{
+            span{
+                font-size: 0.6rem;
+            }
+        }
+    } 
+}
+@media (max-width: 1024px) and (orientation: portrait){ 
+    #start{
+        #startConteiner{
+            flex-direction: column;
+            span{
+                font-size: 0.6rem;
+                margin-top: 1rem;
+            }
+        }
+    } 
 }
