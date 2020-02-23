@@ -1,19 +1,322 @@
+/* Color Theme Swatches in Hex */
+$first: #D95284;
+$secound: #044BD9;
+$third: #0442BF;
+$fourth: #0476D9;
+$fifth: #F27E63;
+$sixth: #0D1440;
+
+@keyframes wave{
+    from{
+        opacity: 1;
+        background-color: $fourth;
+    }
+    to{
+        opacity: 0;
+        background-color: $secound;
+    }
+}
+@keyframes flash{
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+*{
+    //border: 1px solid green;
+}
 body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: $sixth;
+    position: fixed;
+    font-family: 'Roboto', sans-serif;
+    &>div{
+        width: 80.4vw;
+    }
 }
 #canvas{
-    border: 1px solid black;
-    position: fixed;
+    border: 3px solid $fourth;
 }
-.popUp
-{
-    position: fixed;
+#top{
+    color: $first;
+    font-weight: bold;
+    font-size: 1.4rem;
+    &>div{
+        border: 3px solid $fourth;
+        height: 8vh;
+        width: 25vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+#middle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem 0 0.3rem 0;
+    position: relative;
+}
+#bottom{
+    height: 8vh;
+    display: flex;
+    justify-content: flex-end;
+    &>div{
+        border: 3px solid $fourth;
+        height: 8vh;
+        width: 30vw;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    img{
+        height: 1.2rem;
+        margin: 0.1rem;
+    }
+    span{
+        line-height: 1.2rem;
+        font-size: 1.2rem;
+        color: $fifth;
+        font-weight: bold;
+    }
+    #lvlContainer{
+        display: flex;
+    }
+    #lifeCounter{
+        display: flex;
+        align-items: center;
+    }
+    #foodCounter{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    #sphere{
+        background-color: $fourth;
+        border-radius: 50%;
+        height: 1.2rem;
+        width: 1.2rem;
+        margin-right: 0.5rem;
+    }
+}
+//POPUPs
+.popUp{
     display: none;
-    height: 10vh;
-    width: 10vw;
-    background-color: green;
+    position: absolute;
+    border: 3px solid $fourth;
+    background-color: $sixth;
+    height: 20vh;
+    width: 25vw;
+    & >div{
+        height: 100%;
+    }
+}
+#start{
+    display: none!important;
+    height: 50vh;
+    width: 60vw;
+    position: absolute;
+    border: 3px solid $fourth;
+    background-color: $sixth;
+    & >div{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        & >span{
+            text-align: center;
+            color: $fifth;
+            font-weight: bold;
+        }
+        & :nth-child(1){
+            font-size: 1.4rem;
+        }
+        & :nth-child(3){
+            font-size: 0.8rem;
+            animation: flash 1.2s infinite alternate;
+        }
+    }
+    #startConteiner{
+        display: flex;
+        margin: 1.5rem 0;
+        span{
+           flex: 1;
+           color: $fourth;
+           font-size: 0.9rem;
+           text-align: justify;
+           padding: 0 3rem;
+        }
+        div{
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        img{
+            width: 70%;
+            
+        }
+    }
+}
+#pause{
+    & >div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        span{
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: $fifth;
+            font-weight: bold;
+        }
+        div{
+            display: flex;
+            & >:nth-child(1){
+                animation: wave 2s infinite alternate;
+            }
+            & >:nth-child(2){
+                animation: wave 2s 0.4s infinite alternate;
+            }
+            & >:nth-child(3){
+                animation: wave 2s 0.8s infinite alternate;
+            }
+            & >:nth-child(4){
+                animation: wave 2s 1.2s infinite alternate;
+            }
+            & >:nth-child(5){
+                animation: wave 2s 1.6s infinite alternate;
+            }
+        }
+        .sphere{
+            background-color: $fourth;
+            margin: 0 0.2rem;
+            border-radius: 50%;
+            height: 0.9rem;
+            width: 0.9rem;
+        }
+        .active{
+            background-color: $third;
+        }
+    }
+}
+#lose{
+    & >div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        & >:nth-child(1){
+            color: $first;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+        & >:nth-child(2){
+            color: $fourth;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+        img{
+            height: 1rem;
+        }
+    }
+}
+#lvl{
+    & >div{
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        & >div{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        & >:nth-child(1){
+            z-index: 1;
+            font-weight: bold;
+            & >:nth-child(1){
+                color: $fourth;
+                font-size: 0.8rem;
+                margin-bottom: 0.5rem;
+            }
+            & >:nth-child(2){
+                color: $first;
+                font-size: 1.2rem;
+            }
+        }
+        //img container
+        & >:nth-child(2){
+            width: 100%;
+            align-items: center;
+            & >:nth-child(1){
+                animation: flash 3s 0.2s infinite forwards;
+            }
+            & >:nth-child(2){
+                animation: flash 3s 0.1s infinite forwards;
+            }
+            & >:nth-child(3){
+                animation: flash 3s infinite forwards;
+            }
+        }
+        img{
+            width: 15%;
+            opacity: 0.3;
+        }
+    }
+}
+#life{
+    & >div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        span{
+            color: $fourth;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        div{
+            width: 40%;
+            display: flex;
+            justify-content: center
+        }
+        img{
+            width: 15%;
+            margin: 0 0.1rem;
+        }
+    }
+}
+#win{
+    &>div{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    span{
+        color: $first;
+        font-weight: bold;
+        font-size: 1.1rem;
+        animation: flash 1s infinite alternate;
+    }
+    img{
+        height: 20%;
+    }
 }

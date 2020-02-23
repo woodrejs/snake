@@ -14,13 +14,6 @@ window.onload = function()
 //variables
     const canvas = document.querySelector("#canvas");
     const c = canvas.getContext("2d");
-    const colorsArray = [
-        "#713D99",
-        "#7C14CC",
-        "#0400FF",
-        "#FFCA40",
-        "#CC8714"
-    ];
 //popUps
     const popUPs = document.querySelectorAll('.popUp');
     const pausePopUp = document.querySelector("#pause");
@@ -28,6 +21,7 @@ window.onload = function()
     const startPopUp = document.querySelector("#start");
     const lvlPopUp = document.querySelector("#lvl");
     const lifePopUp = document.querySelector("#life");
+    const winPopUp = document.querySelector("#win");
     function showPopUp(obj){
         pause = true;
         obj.style.display = 'block';
@@ -37,11 +31,33 @@ window.onload = function()
         obj.style.display = 'none';
     }
 //counters
-    const foodCounter = document.querySelector("#foodCounter");
-    const lifeCounter = document.querySelector("#lifeCounter");
+    const foodCounter = document.querySelector("#foodCounter span");
     const lvlCounter = document.querySelector("#lvlCounter");
     function showCounter(obj,counter){
         obj.innerHTML = counter;
+    }
+//life-hearth update
+    const lifePopUpHearts = document.querySelectorAll('#life img');
+    const bottomHearts = document.querySelectorAll('#bottom img');
+    const heartsIcons = document.querySelectorAll('.heartIcons');
+    const setHearts = ()=>{
+        for(heart of heartsIcons)
+            heart.setAttribute('src','./icons/full_heart_icon.svg');
+    }
+    function updateHearth(array){
+        switch (life) {
+            case 2:
+                array[2].setAttribute('src','./icons/empty_heart_icon.svg');
+                break;
+            case 1:
+                array[1].setAttribute('src','./icons/empty_heart_icon.svg');
+                break;
+            case 0:
+                array[0].setAttribute('src','./icons/empty_heart_icon.svg');
+                break;
+            default:
+                break;
+        }
     }
 //direction
     var direction;
@@ -67,13 +83,13 @@ window.onload = function()
     }
 //snake
     const snakeArray =[];
-    let snakeSize = 5;
+    let snakeSize = 8;
     function Snake(x,y,radius){
 
         this.x = x;
         this.y = y;
         this.radius = radius;
-        this.color = 'red';
+        this.color = '#F27E63';
 
         this.draw = function(){
             c.beginPath();
@@ -90,13 +106,13 @@ window.onload = function()
     }
 //food
     const foodArray = [];
-    let foodQuantity = 49;
-    let foodSize = 5;
-    function Food(x,y,radius,color){
+    let foodQuantity = 24;
+    let foodSize = 8;
+    function Food(x,y,radius){
         this.x = x;
         this.y = y;
         this.radius = radius;
-        this.color = color;
+        this.color = '#0476D9';
         
         this.draw = function(){
             c.beginPath();
@@ -112,14 +128,13 @@ window.onload = function()
         let radius= foodSize;
         let x = (Math.random() * (canvas.width - radius*2))+radius;
         let y = (Math.random() * (canvas.height - radius*2))+radius;
-        let color = colorsArray[Math.floor(Math.random() * colorsArray.length + 1)];
 
-        foodArray.push(new Food(x,y,radius,color));
+        foodArray.push(new Food(x,y,radius));
     
         for(let i=0;i<foodQuantity;i++){
             x = (Math.random() * (canvas.width - radius*2))+radius;
             y = (Math.random() * (canvas.height - radius*2))+radius;
-            color = colorsArray[Math.floor(Math.random() * colorsArray.length + 1)];
+            
 
             for(let j=0;j<foodArray.length;j++){
                 const food = foodArray[j];
@@ -129,34 +144,36 @@ window.onload = function()
                     j=0;
                 }
             }
-            foodArray.push(new Food(x,y,radius,color));
+            foodArray.push(new Food(x,y,radius));
         } 
     }
 //animation
     let pause = true;
     let counter = 0;
     let life = 3;
-    let speed = 9;
+    let speed = 8;
+    const winLvl = 8; //determines after with lvl player win
     function animation()
     {
         requestAnimationFrame(animation);
         c.clearRect(0,0,canvas.width,canvas.height);
-
         showCounter(foodCounter,foodArray.length);
-        showCounter(lifeCounter,life);
         showCounter(lvlCounter,10-speed);
+        life ==3 && pause == false ? setHearts() : false;
 
         for(snake of snakeArray)
             snake.draw();
         for(food of foodArray)
             food.draw();
-        if(foodArray.length == 0){
+            
+        //lvl up state
+        if(foodArray.length == 0 && 10-speed !== winLvl){
             showPopUp(lvlPopUp);
             setFood();
             setSnakeHead();
             life !== 1 ? speed-- : speed = 9; 
         }
-        
+
         if(counter == speed){
             const head = snakeArray[0];
             const headX = head.x+getHorizontalDirection(head.radius*2);
@@ -167,11 +184,12 @@ window.onload = function()
                 const food = snakeArray[i];
                 const headTailDistance = checkDistance(food.x,head.x,food.y,head.y);
                 if(headTailDistance < head.radius*2){
+                    life--;
                     setSnakeHead();
-                    setFood();
-                    if(life !== 1){
+                    updateHearth(lifePopUpHearts);
+                    updateHearth(bottomHearts);
+                    if(life !== 0){
                         showPopUp(lifePopUp);
-                        life--;
                     }
                     else{
                         showPopUp(losePopUp);
@@ -188,11 +206,12 @@ window.onload = function()
             snakeArray.pop();
             counter = 0;
             if(newHead.x+newHead.radius<=0 || newHead.x-newHead.radius>=canvas.width || newHead.y+newHead.radius <= 0 || newHead.y-newHead.radius >= canvas.height){
+                life--;
                 setSnakeHead();
-                setFood();
-                if(life !== 1){
+                updateHearth(lifePopUpHearts);
+                updateHearth(bottomHearts);
+                if(life !== 0){
                     showPopUp(lifePopUp);
-                    life--;
                 }
                 else{
                     showPopUp(losePopUp);
@@ -202,7 +221,14 @@ window.onload = function()
         }
         else
             pause == false ? counter++ : counter = counter;
-        
+
+        if(10-speed == winLvl && foodArray.length == 0){
+            showPopUp(winPopUp);
+            setFood();
+            setSnakeHead();
+            life = 3;
+            speed = winLvl;
+        }
     }
 //init
     window.addEventListener('resize',()=>{
@@ -214,6 +240,7 @@ window.onload = function()
         if(e.keyCode !== 32 ){
             for(popUP of popUPs)
                 hidePopUp(popUP);
+                hidePopUp(startPopUp);
         }
         else if(e.keyCode == 32){
             showPopUp(pausePopUp);
@@ -224,7 +251,6 @@ window.onload = function()
     window.addEventListener('keydown',setDirection);
     setCanvasDimensions(canvas);
     showCounter(foodCounter,foodArray.length);
-    showCounter(lifeCounter,life);
     showCounter(lvlCounter,10-speed);
     setFood();
     setSnakeHead();

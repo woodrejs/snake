@@ -4,25 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="./snake.css">
     <title>Document</title>
 </head>
 <body>
-    
-    <canvas id="canvas"></canvas>
-    
-    <div class="popUp" id="pause">Pause</div>
-    <div class="popUp" id="lose">lose</div>
-    <div class="popUp" id="start">start</div>
-    <div class="popUp" id="lvl">lvl</div>
-    <div class="popUp" id="life">life</div>
 
-    <div id="foodCounter"></div>
-    <div id="lifeCounter"></div>
-    <div id="lvlCounter"></div>
-
-
-
+    <div id="top">
+        <div>
+            <span>SNAKE</span>
+        </div>
+    </div>
+    <div id="middle">
+        <canvas id="canvas"></canvas>
+        <div id="start">
+            <div>
+                <span>ZASADY GRY</span>
+                <div id="startConteiner">
+                    <div><img src="./icons/keys.png" alt=""></div>
+                    <span>
+                        W grze gracz kontroluje węża, który porusza się po obramowanej planszy zbierając 
+                        jedzenie, próbując nie uderzyć własną głową o ściany otaczające planszę gry, 
+                        a także o część własnego ciała. Kiedy wąż zje kawałek jedzenia, jego ogon robi 
+                        się coraz dłuższy. Gracz kontroluje kierunek ruchu węża za pomocą klawiszy strzałek. 
+                        Gracz może zatrzymać grę używając klawisza “space”. Po zebraniu całego jedzenia na planszy 
+                        gracz przechodzi na kolejny poziom a wąż przyspiesza.
+                    </span>
+                </div>
+                <span>WCIŚNIJ KIERUNEK ABY ZACZĄĆ</span>
+            </div>
+        </div>
+        <div class="popUp" id="pause">
+            <div>
+                <span>PAUSE</span>
+                <div>
+                    <div class="sphere"></div>
+                    <div class="sphere active"></div>
+                    <div class="sphere"></div>
+                    <div class="sphere"></div>
+                    <div class="sphere"></div>
+                </div>
+            </div>
+        </div>
+        <div class="popUp" id="lose">
+            <div>
+                <span>PRZEGRAŁEŚ</span>
+                <span>SPRÓBUJ PONOWNIE</span>
+                <div>
+                    <img src="./icons/empty_heart_icon.svg" alt="empty_heart_icon">
+                    <img src="./icons/empty_heart_icon.svg" alt="empty_heart_icon">
+                    <img src="./icons/empty_heart_icon.svg" alt="empty_heart_icon">
+                </div>
+            </div>
+        </div>
+        <div class="popUp" id="lvl">
+            <div>
+                <div>
+                    <span>PRZECHODZISZ NA KOLEJNY POZIOM</span>
+                    <span>GRATULACJE</span>
+                </div>
+                <div>
+                    <img src="./icons/arrow.svg" alt="arrow_icon">
+                    <img src="./icons/arrow.svg" alt="arrow_icon">
+                    <img src="./icons/arrow.svg" alt="arrow_icon">
+                </div>
+            </div>
+        </div>
+        <div class="popUp" id="life">
+            <div>
+                <span>STRACIŁEŚ ŻYCIE</span>
+                <div>
+                    <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="full_heart_icon">
+                    <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="full_heart_icon">
+                    <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="full_heart_icon">
+                </div>
+            </div>
+        </div>
+        <div class="popUp" id="win">
+            <div>
+                <img src="./icons/medal_icon.svg" alt="medal_icon">
+                <span>WYGRAŁEŚ GRATULACJE</span>
+                <img src="./icons/medal_icon.svg" alt="medal_icon">
+            </div>
+        </div>
+    </div>
+    <div id="bottom">
+        <div>
+            <div id="lvlContainer">
+                <span>LVL</span>
+                <span id="lvlCounter"></span>
+            </div>
+            <div id="foodCounter">
+                <div id="sphere"></div>
+                <span></span>
+            </div>
+            <div id="lifeCounter">
+                <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="heart_icon">
+                <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="heart_icon">
+                <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="heart_icon">
+            </div>
+        </div>
+    </div>
    
     <script src="./snake.js"></script>
 </body>

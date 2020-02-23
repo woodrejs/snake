@@ -1,6 +1,86 @@
+/* Color Theme Swatches in Hex */
+@-webkit-keyframes wave {
+  from {
+    opacity: 1;
+    background-color: #0476D9;
+  }
+  to {
+    opacity: 0;
+    background-color: #044BD9;
+  }
+}
+@keyframes wave {
+  from {
+    opacity: 1;
+    background-color: #0476D9;
+  }
+  to {
+    opacity: 0;
+    background-color: #044BD9;
+  }
+}
+
+@-webkit-keyframes flash {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes flash {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 body {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   width: 100vw;
   height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #0D1440;
+  position: fixed;
+  font-family: 'Roboto', sans-serif;
+}
+
+body > div {
+  width: 80.4vw;
+}
+
+#canvas {
+  border: 3px solid #0476D9;
+}
+
+#top {
+  color: #D95284;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+#top > div {
+  border: 3px solid #0476D9;
+  height: 8vh;
+  width: 25vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12,16 +92,410 @@ body {
           align-items: center;
 }
 
-#canvas {
-  border: 1px solid black;
-  position: fixed;
+#middle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0.5rem 0 0.3rem 0;
+  position: relative;
+}
+
+#bottom {
+  height: 8vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+#bottom > div {
+  border: 3px solid #0476D9;
+  height: 8vh;
+  width: 30vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#bottom img {
+  height: 1.2rem;
+  margin: 0.1rem;
+}
+
+#bottom span {
+  line-height: 1.2rem;
+  font-size: 1.2rem;
+  color: #F27E63;
+  font-weight: bold;
+}
+
+#bottom #lvlContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#bottom #lifeCounter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#bottom #foodCounter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#bottom #sphere {
+  background-color: #0476D9;
+  border-radius: 50%;
+  height: 1.2rem;
+  width: 1.2rem;
+  margin-right: 0.5rem;
 }
 
 .popUp {
-  position: fixed;
   display: none;
-  height: 10vh;
-  width: 10vw;
-  background-color: green;
+  position: absolute;
+  border: 3px solid #0476D9;
+  background-color: #0D1440;
+  height: 20vh;
+  width: 25vw;
+}
+
+.popUp > div {
+  height: 100%;
+}
+
+#start {
+  display: none !important;
+  height: 50vh;
+  width: 60vw;
+  position: absolute;
+  border: 3px solid #0476D9;
+  background-color: #0D1440;
+}
+
+#start > div {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#start > div > span {
+  text-align: center;
+  color: #F27E63;
+  font-weight: bold;
+}
+
+#start > div :nth-child(1) {
+  font-size: 1.4rem;
+}
+
+#start > div :nth-child(3) {
+  font-size: 0.8rem;
+  -webkit-animation: flash 1.2s infinite alternate;
+          animation: flash 1.2s infinite alternate;
+}
+
+#start #startConteiner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 1.5rem 0;
+}
+
+#start #startConteiner span {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  color: #0476D9;
+  font-size: 0.9rem;
+  text-align: justify;
+  padding: 0 3rem;
+}
+
+#start #startConteiner div {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#start #startConteiner img {
+  width: 70%;
+}
+
+#pause > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#pause > div span {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #F27E63;
+  font-weight: bold;
+}
+
+#pause > div div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#pause > div div > :nth-child(1) {
+  -webkit-animation: wave 2s infinite alternate;
+          animation: wave 2s infinite alternate;
+}
+
+#pause > div div > :nth-child(2) {
+  -webkit-animation: wave 2s 0.4s infinite alternate;
+          animation: wave 2s 0.4s infinite alternate;
+}
+
+#pause > div div > :nth-child(3) {
+  -webkit-animation: wave 2s 0.8s infinite alternate;
+          animation: wave 2s 0.8s infinite alternate;
+}
+
+#pause > div div > :nth-child(4) {
+  -webkit-animation: wave 2s 1.2s infinite alternate;
+          animation: wave 2s 1.2s infinite alternate;
+}
+
+#pause > div div > :nth-child(5) {
+  -webkit-animation: wave 2s 1.6s infinite alternate;
+          animation: wave 2s 1.6s infinite alternate;
+}
+
+#pause > div .sphere {
+  background-color: #0476D9;
+  margin: 0 0.2rem;
+  border-radius: 50%;
+  height: 0.9rem;
+  width: 0.9rem;
+}
+
+#pause > div .active {
+  background-color: #0442BF;
+}
+
+#lose > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#lose > div > :nth-child(1) {
+  color: #D95284;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+#lose > div > :nth-child(2) {
+  color: #0476D9;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+#lose > div img {
+  height: 1rem;
+}
+
+#lvl > div {
+  height: 100%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#lvl > div > div {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+
+#lvl > div > :nth-child(1) {
+  z-index: 1;
+  font-weight: bold;
+}
+
+#lvl > div > :nth-child(1) > :nth-child(1) {
+  color: #0476D9;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+#lvl > div > :nth-child(1) > :nth-child(2) {
+  color: #D95284;
+  font-size: 1.2rem;
+}
+
+#lvl > div > :nth-child(2) {
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#lvl > div > :nth-child(2) > :nth-child(1) {
+  -webkit-animation: flash 3s 0.2s infinite forwards;
+          animation: flash 3s 0.2s infinite forwards;
+}
+
+#lvl > div > :nth-child(2) > :nth-child(2) {
+  -webkit-animation: flash 3s 0.1s infinite forwards;
+          animation: flash 3s 0.1s infinite forwards;
+}
+
+#lvl > div > :nth-child(2) > :nth-child(3) {
+  -webkit-animation: flash 3s infinite forwards;
+          animation: flash 3s infinite forwards;
+}
+
+#lvl > div img {
+  width: 15%;
+  opacity: 0.3;
+}
+
+#life > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#life > div span {
+  color: #0476D9;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+#life > div div {
+  width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#life > div img {
+  width: 15%;
+  margin: 0 0.1rem;
+}
+
+#win > div {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+#win span {
+  color: #D95284;
+  font-weight: bold;
+  font-size: 1.1rem;
+  -webkit-animation: flash 1s infinite alternate;
+          animation: flash 1s infinite alternate;
+}
+
+#win img {
+  height: 20%;
 }
 /*# sourceMappingURL=snake.css.map */
