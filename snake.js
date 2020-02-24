@@ -38,7 +38,7 @@ window.onload = function()
     }
 //life-hearth update
     const lifePopUpHearts = document.querySelectorAll('#life img');
-    const bottomHearts = document.querySelectorAll('#bottom img');
+    const bottomHearts = document.querySelectorAll('#lifeCounter img');
     const heartsIcons = document.querySelectorAll('.heartIcons');
     const setHearts = ()=>{
         for(heart of heartsIcons)
@@ -81,6 +81,75 @@ window.onload = function()
         else
             return 0;
     }
+//phone controle
+    const controlBtns = document.querySelectorAll('.phoneControlBtns');
+    const leftBtn = document.querySelector('#leftBtn');
+    const rightBtn = document.querySelector('#rightBtn');
+    const downBtn = document.querySelector('#downBtn');
+    const upBtn = document.querySelector('#upBtn');
+    const pauseBtn = document.querySelector('#pauseBtn');
+    function setDirectionOnPhone(obj){
+        switch (obj) {
+            case leftBtn:
+                direction = 37;
+                break;
+            case rightBtn:
+                direction = 39;
+                break;
+            case downBtn:
+                direction = 40;
+                break;
+            case upBtn:
+                direction = 38;
+                break;
+            case pauseBtn:
+                direction = 32;
+                break;
+            default:
+                break;
+        }
+        console.log(direction)
+    }
+
+
+
+/*
+
+keyup keydown?????
+
+
+ for(btn of controlBtns){
+        btn.addEventListener('mousedown',function(e){
+            setDirectionOnPhone(this);
+            
+        });
+        btn.addEventListener('mouseup',function(e){
+            if(e.keyCode !== 32 ){
+                for(popUP of popUPs)
+                    hidePopUp(popUP);
+                    hidePopUp(startPopUp);
+            }
+            else if(e.keyCode == 32){
+                showPopUp(pausePopUp);
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+
+
+
 //snake
     const snakeArray =[];
     let snakeSize = 8;

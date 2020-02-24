@@ -9,103 +9,110 @@
     <title>Document</title>
 </head>
 <body>
-
-    <div id="top">
-        <div>
-            <span>SNAKE</span>
+    <div id="gameContainer">
+        <div id="top">
+            <div>
+                <span>SNAKE</span>
+            </div>
+        </div>
+        <div id="middle">
+            <canvas id="canvas"></canvas>
+            <div id="start">
+                <div>
+                    <span>ZASADY GRY</span>
+                    <div id="startConteiner">
+                        <div><img src="./icons/keys.png" alt=""></div>
+                        <span>
+                            W grze gracz kontroluje węża, który porusza się po obramowanej planszy zbierając 
+                            jedzenie, próbując nie uderzyć własną głową o ściany otaczające planszę gry, 
+                            a także o część własnego ciała. Kiedy wąż zje kawałek jedzenia, jego ogon robi 
+                            się coraz dłuższy. Gracz kontroluje kierunek ruchu węża za pomocą klawiszy strzałek. 
+                            Gracz może zatrzymać grę używając klawisza “space”. Po zebraniu całego jedzenia na planszy 
+                            gracz przechodzi na kolejny poziom a wąż przyspiesza.
+                        </span>
+                    </div>
+                    <span>WCIŚNIJ KIERUNEK ABY ZACZĄĆ</span>
+                </div>
+            </div>
+            <div class="popUp" id="pause">
+                <div>
+                    <span>PAUSE</span>
+                    <div>
+                        <div class="sphere"></div>
+                        <div class="sphere active"></div>
+                        <div class="sphere"></div>
+                        <div class="sphere"></div>
+                        <div class="sphere"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="popUp" id="lose">
+                <div>
+                    <span>PRZEGRAŁEŚ</span>
+                    <span>SPRÓBUJ PONOWNIE</span>
+                    <div>
+                        <img src="./icons/empty_heart_icon.svg" alt="empty_heart_icon">
+                        <img src="./icons/empty_heart_icon.svg" alt="empty_heart_icon">
+                        <img src="./icons/empty_heart_icon.svg" alt="empty_heart_icon">
+                    </div>
+                </div>
+            </div>
+            <div class="popUp" id="lvl">
+                <div>
+                    <div>
+                        <span>PRZECHODZISZ NA KOLEJNY POZIOM</span>
+                        <span>GRATULACJE</span>
+                    </div>
+                    <div>
+                        <img src="./icons/arrow.svg" alt="arrow_icon">
+                        <img src="./icons/arrow.svg" alt="arrow_icon">
+                        <img src="./icons/arrow.svg" alt="arrow_icon">
+                    </div>
+                </div>
+            </div>
+            <div class="popUp" id="life">
+                <div>
+                    <span>STRACIŁEŚ ŻYCIE</span>
+                    <div>
+                        <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="full_heart_icon">
+                        <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="full_heart_icon">
+                        <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="full_heart_icon">
+                    </div>
+                </div>
+            </div>
+            <div class="popUp" id="win">
+                <div>
+                    <img src="./icons/medal_icon.svg" alt="medal_icon">
+                    <span>WYGRAŁEŚ GRATULACJE</span>
+                    <img src="./icons/medal_icon.svg" alt="medal_icon">
+                </div>
+            </div>
+        </div>
+        <div id="bottom">
+            <div id="phoneControl">
+                <img id="leftBtn" class="phoneControlBtns" src="./icons/left_arrow.png" alt="left_arrow_icon">
+                <img id="downBtn" class="phoneControlBtns" src="./icons/down_arrow.png" alt="down_arrow_icon">
+                <img id="pauseBtn" class="phoneControlBtns" src="./icons/pause_btn.png" alt="pause_icon">
+                <img id="upBtn" class="phoneControlBtns" src="./icons/up_arrow.png" alt="up_arrow_icon">
+                <img id="rightBtn" class="phoneControlBtns" src="./icons/right_arrow.png" alt="right_arrow_icon">
+            </div>
+            <div id="countersContainer">
+                <div id="lvlContainer">
+                    <span>LVL</span>
+                    <span id="lvlCounter"></span>
+                </div>
+                <div id="foodCounter">
+                    <div id="sphere"></div>
+                    <span></span>
+                </div>
+                <div id="lifeCounter">
+                    <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="heart_icon">
+                    <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="heart_icon">
+                    <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="heart_icon">
+                </div>
+            </div>
         </div>
     </div>
-    <div id="middle">
-        <canvas id="canvas"></canvas>
-        <div id="start">
-            <div>
-                <span>ZASADY GRY</span>
-                <div id="startConteiner">
-                    <div><img src="./icons/keys.png" alt=""></div>
-                    <span>
-                        W grze gracz kontroluje węża, który porusza się po obramowanej planszy zbierając 
-                        jedzenie, próbując nie uderzyć własną głową o ściany otaczające planszę gry, 
-                        a także o część własnego ciała. Kiedy wąż zje kawałek jedzenia, jego ogon robi 
-                        się coraz dłuższy. Gracz kontroluje kierunek ruchu węża za pomocą klawiszy strzałek. 
-                        Gracz może zatrzymać grę używając klawisza “space”. Po zebraniu całego jedzenia na planszy 
-                        gracz przechodzi na kolejny poziom a wąż przyspiesza.
-                    </span>
-                </div>
-                <span>WCIŚNIJ KIERUNEK ABY ZACZĄĆ</span>
-            </div>
-        </div>
-        <div class="popUp" id="pause">
-            <div>
-                <span>PAUSE</span>
-                <div>
-                    <div class="sphere"></div>
-                    <div class="sphere active"></div>
-                    <div class="sphere"></div>
-                    <div class="sphere"></div>
-                    <div class="sphere"></div>
-                </div>
-            </div>
-        </div>
-        <div class="popUp" id="lose">
-            <div>
-                <span>PRZEGRAŁEŚ</span>
-                <span>SPRÓBUJ PONOWNIE</span>
-                <div>
-                    <img src="./icons/empty_heart_icon.svg" alt="empty_heart_icon">
-                    <img src="./icons/empty_heart_icon.svg" alt="empty_heart_icon">
-                    <img src="./icons/empty_heart_icon.svg" alt="empty_heart_icon">
-                </div>
-            </div>
-        </div>
-        <div class="popUp" id="lvl">
-            <div>
-                <div>
-                    <span>PRZECHODZISZ NA KOLEJNY POZIOM</span>
-                    <span>GRATULACJE</span>
-                </div>
-                <div>
-                    <img src="./icons/arrow.svg" alt="arrow_icon">
-                    <img src="./icons/arrow.svg" alt="arrow_icon">
-                    <img src="./icons/arrow.svg" alt="arrow_icon">
-                </div>
-            </div>
-        </div>
-        <div class="popUp" id="life">
-            <div>
-                <span>STRACIŁEŚ ŻYCIE</span>
-                <div>
-                    <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="full_heart_icon">
-                    <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="full_heart_icon">
-                    <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="full_heart_icon">
-                </div>
-            </div>
-        </div>
-        <div class="popUp" id="win">
-            <div>
-                <img src="./icons/medal_icon.svg" alt="medal_icon">
-                <span>WYGRAŁEŚ GRATULACJE</span>
-                <img src="./icons/medal_icon.svg" alt="medal_icon">
-            </div>
-        </div>
-    </div>
-    <div id="bottom">
-        <div>
-            <div id="lvlContainer">
-                <span>LVL</span>
-                <span id="lvlCounter"></span>
-            </div>
-            <div id="foodCounter">
-                <div id="sphere"></div>
-                <span></span>
-            </div>
-            <div id="lifeCounter">
-                <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="heart_icon">
-                <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="heart_icon">
-                <img class="heartIcons" src="./icons/full_heart_icon.svg" alt="heart_icon">
-            </div>
-        </div>
-    </div>
-   
     <script src="./snake.js"></script>
 </body>
 </html>
