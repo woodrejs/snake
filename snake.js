@@ -6,12 +6,12 @@ function checkDistance(x1,x2,y1,y2)
     return Math.sqrt(Math.pow(tmpX,2)+Math.pow(tmpY,2));
 }
 function setCanvasDimensions(obj){
-    obj.width = window.innerWidth * 0.8;
-    obj.height = window.innerHeight* 0.7; 
+    obj.width = parseInt(window.innerWidth * 0.8);
+    obj.height = parseInt(window.innerHeight* 0.7); 
 }
 window.onload = function()
 { 
-//variables
+//canvas
     const canvas = document.querySelector("#canvas");
     const c = canvas.getContext("2d");
 //popUps
@@ -89,9 +89,11 @@ window.onload = function()
         this.x = x;
         this.y = y;
         this.radius = radius;
-        this.color = '#F27E63';
-
+        this.updateColor = function(){
+            this == snakeArray[0] ? this.color = '#D95284' : this.color = '#F27E63';
+        }
         this.draw = function(){
+            this.updateColor();
             c.beginPath();
             c.arc(this.x,this.y,this.radius,0,Math.PI*2,false);
             c.fillStyle = this.color;
@@ -192,7 +194,6 @@ window.onload = function()
             const headX = head.x+getHorizontalDirection(head.radius*2);
             const headY = head.y+getVerticalDirection(head.radius*2);
             const newHead = new Snake(headX,headY,snakeSize);
-
         //colision with tail
             for (let i = 1; i < snakeArray.length; i++) {
                 const tail = snakeArray[i];
@@ -211,7 +212,7 @@ window.onload = function()
                 }
             }
         //colision with walls
-            if(head.x+head.radius<=0 || head.x-head.radius>=canvas.width || head.y+head.radius <= 0 || head.y-head.radius >= canvas.height){
+            if(newHead.x+newHead.radius<=0 || newHead.x-newHead.radius>=canvas.width || newHead.y-newHead.radius <= 0 || newHead.y+newHead.radius >= canvas.height){
                 life--;
                 updateHearth(lifePopUpHearts);
                 updateHearth(bottomHearts);
