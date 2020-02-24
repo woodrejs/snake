@@ -234,6 +234,10 @@ body > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin: 1.5rem 0;
 }
 
@@ -498,22 +502,78 @@ body > div {
   height: 20%;
 }
 
-@media (max-width: 1024px) and (orientation: landscape) {
+@media (max-width: 325px) {
+  html {
+    font-size: 8px;
+  }
   #start #startConteiner span {
-    font-size: 0.6rem;
+    margin-top: 1rem;
   }
 }
 
-@media (max-width: 1024px) and (orientation: portrait) {
-  #start #startConteiner {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+@media (min-width: 326px) {
+  html {
+    font-size: 10px;
   }
   #start #startConteiner span {
-    font-size: 0.6rem;
     margin-top: 1rem;
+  }
+}
+
+@media (min-width: 576px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 992px) {
+  #start #startConteiner {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
+@media (min-width: 1920px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 801px) and (orientation: landscape) {
+  html {
+    font-size: 6px;
+  }
+  #start #startConteiner {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
+@media (min-width: 576px) and (orientation: landscape) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media (min-width: 992px) and (orientation: landscape) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1280px) and (orientation: landscape) {
+  html {
+    font-size: 15px;
   }
 }
 /*# sourceMappingURL=snake.css.map */
