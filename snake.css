@@ -284,7 +284,7 @@ body {
 }
 
 #start #startConteiner img {
-  width: 70%;
+  width: 60%;
 }
 
 #pause > div {
@@ -567,6 +567,9 @@ body {
   }
   #bottom #phoneControl {
     display: none;
+  }
+  #start #startConteiner img {
+    width: 70%;
   }
 }
 

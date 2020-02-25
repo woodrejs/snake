@@ -174,8 +174,7 @@ body{
             justify-content: center;
         }
         img{
-            width: 70%;
-            
+            width: 60%;
         }
     }
 }
@@ -384,6 +383,13 @@ body{
         }
         #phoneControl{
             display: none;
+        }
+    }
+    #start{
+        #startConteiner{
+            img{
+                width: 70%;
+            }
         }
     }
 }

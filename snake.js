@@ -110,46 +110,6 @@ window.onload = function()
         }
         console.log(direction)
     }
-
-
-
-/*
-
-keyup keydown?????
-
-
- for(btn of controlBtns){
-        btn.addEventListener('mousedown',function(e){
-            setDirectionOnPhone(this);
-            
-        });
-        btn.addEventListener('mouseup',function(e){
-            if(e.keyCode !== 32 ){
-                for(popUP of popUPs)
-                    hidePopUp(popUP);
-                    hidePopUp(startPopUp);
-            }
-            else if(e.keyCode == 32){
-                showPopUp(pausePopUp);
-            }
-        });
-    }
-
-
-
-
-
-
-
-
-
-
-
-*/
-
-
-
-
 //snake
     const snakeArray =[];
     let snakeSize = 8;
@@ -317,12 +277,29 @@ keyup keydown?????
         if(e.keyCode !== 32 ){
             for(popUP of popUPs)
                 hidePopUp(popUP);
+
                 hidePopUp(startPopUp);
         }
         else if(e.keyCode == 32){
             showPopUp(pausePopUp);
         }
     });
+    for(btn of controlBtns){
+        btn.addEventListener('mousedown',function(e){
+            setDirectionOnPhone(this);
+        });
+        btn.addEventListener('mouseup',function(e){
+            if(direction !== 32 ){
+                for(popUP of popUPs)
+                    hidePopUp(popUP);
+
+                    hidePopUp(startPopUp);
+            }
+            else if(direction == 32){
+                showPopUp(pausePopUp);
+            }
+        });
+    }
     window.addEventListener('keydown',setDirection);
     setCanvasDimensions(canvas);
     showCounter(foodCounter,foodArray.length);
