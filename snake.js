@@ -134,7 +134,7 @@ window.onload = function()
     }
 //food
     const foodArray = [];
-    let foodQuantity = 24;
+    let foodQuantity;
     let foodSize;
     function Food(x,y,radius){
         this.x = x;
@@ -179,25 +179,26 @@ window.onload = function()
     let pause = true;
     let counter = 0;
     let speed;
-    let winLvl;
+    let winLvl = 5;
     let life = 3;
+    let currentlvl = 0;
     if(window.innerWidth< 801){
         speed = 15;
-        winLvl = 15;
         foodSize = 4;
         snakeSize = 4;
+        foodQuantity = 2;
     }else{
         speed = 8;
-        winLvl = 8;
         foodSize = 8;
         snakeSize = 8;
+        foodQuantity = 0;
     }
     function animation()
     {
         requestAnimationFrame(animation);
         c.clearRect(0,0,canvas.width,canvas.height);
         showCounter(foodCounter,foodArray.length);
-        showCounter(lvlCounter,10-speed);
+        showCounter(lvlCounter,currentlvl);
 
         for(snake of snakeArray)
             snake.draw();
@@ -210,20 +211,22 @@ window.onload = function()
         if(life ==3 && pause == false){
             setHearts();
         }
+    //lvlup & win state
+        if(foodArray.length == 0 && currentlvl !== winLvl){
+            showPopUp(lvlPopUp);
+            currentlvl++;
+            life !== 1 ? speed-- : speed = 9;
+        }
+        else if(currentlvl == winLvl && foodArray.length == 0){
+            showPopUp(winPopUp);
+            currentlvl = 0;
+            life = 3;
+            speed = winLvl;
+        }
     //playground reset
         if(foodArray.length == 0){
             setFood();
             setSnakeHead();
-        }
-    //lvlup & win state
-        if(foodArray.length == 0 && 10-speed !== winLvl){
-            showPopUp(lvlPopUp);
-            life !== 1 ? speed-- : speed = 9;
-        }
-        else if(10-speed == winLvl && foodArray.length == 0){
-            showPopUp(winPopUp);
-            life = 3;
-            speed = winLvl;
         }
     //move state
         if(counter == speed && pause !== true){
@@ -309,7 +312,7 @@ window.onload = function()
     window.addEventListener('keydown',setDirection);
     setCanvasDimensions(canvas);
     showCounter(foodCounter,foodArray.length);
-    showCounter(lvlCounter,10-speed);
+    showCounter(lvlCounter,currentlvl);
     setFood();
     setSnakeHead();
     showPopUp(startPopUp);
