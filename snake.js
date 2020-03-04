@@ -109,7 +109,7 @@ window.onload = function()
     }
 //snake
     const snakeArray =[];
-    let snakeSize = 8;
+    let snakeSize;
     function Snake(x,y,radius){
 
         this.x = x;
@@ -135,7 +135,7 @@ window.onload = function()
 //food
     const foodArray = [];
     let foodQuantity = 24;
-    let foodSize = 8;
+    let foodSize;
     function Food(x,y,radius){
         this.x = x;
         this.y = y;
@@ -178,9 +178,20 @@ window.onload = function()
 //animation
     let pause = true;
     let counter = 0;
+    let speed;
+    let winLvl;
     let life = 3;
-    let speed = 8;
-    const winLvl = 8;
+    if(window.innerWidth< 801){
+        speed = 15;
+        winLvl = 15;
+        foodSize = 4;
+        snakeSize = 4;
+    }else{
+        speed = 8;
+        winLvl = 8;
+        foodSize = 8;
+        snakeSize = 8;
+    }
     function animation()
     {
         requestAnimationFrame(animation);
@@ -304,7 +315,6 @@ window.onload = function()
     showPopUp(startPopUp);
     animation();
 }
-
 
 
 
