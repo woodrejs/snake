@@ -186,12 +186,12 @@ window.onload = function()
         speed = 15;
         foodSize = 4;
         snakeSize = 4;
-        foodQuantity = 2;
+        foodQuantity = 15;
     }else{
         speed = 8;
         foodSize = 8;
         snakeSize = 8;
-        foodQuantity = 0;
+        foodQuantity = 25;
     }
     function animation()
     {
