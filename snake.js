@@ -91,24 +91,21 @@ window.onload = function()
     function setDirectionOnPhone(obj){
         switch (obj) {
             case leftBtn:
-                direction = 37;
+                Math.abs(direction - 37) !== 2 ? direction = 37 : false;
                 break;
             case rightBtn:
-                direction = 39;
+                Math.abs(direction - 39) !== 2 ? direction = 39 : false;
                 break;
             case downBtn:
-                direction = 40;
+                Math.abs(direction - 40) !== 2 ? direction = 40 : false;
                 break;
             case upBtn:
-                direction = 38;
+                Math.abs(direction - 38) !== 2 ? direction = 38 : false;
                 break;
             case pauseBtn:
                 direction = 32;
                 break;
-            default:
-                break;
         }
-        console.log(direction)
     }
 //snake
     const snakeArray =[];
@@ -218,7 +215,7 @@ window.onload = function()
             speed = winLvl;
         }
     //move state
-        if(counter == speed){
+        if(counter == speed && pause !== true){
             const head = snakeArray[0];
             const headX = head.x+getHorizontalDirection(head.radius*2);
             const headY = head.y+getVerticalDirection(head.radius*2);
@@ -285,10 +282,8 @@ window.onload = function()
         }
     });
     for(btn of controlBtns){
-        btn.addEventListener('mousedown',function(e){
+        btn.addEventListener('mousedown',function(){
             setDirectionOnPhone(this);
-        });
-        btn.addEventListener('mouseup',function(e){
             if(direction !== 32 ){
                 for(popUP of popUPs)
                     hidePopUp(popUP);
